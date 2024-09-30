@@ -12,12 +12,8 @@
 #include <variant>
 #include <utility>
 
-#ifdef __linux__
 #include <csignal>
-#else
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-#endif
+
 
 namespace btfparse {
 
@@ -116,11 +112,7 @@ private:
     } else {
       std::cerr << message << "\n";
 
-#ifdef __linux__
       raise(SIGTRAP);
-#else
-      DebugBreak();
-#endif
     }
   }
 
